@@ -24,6 +24,12 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a mpv \
+     state=floating sticky=on follow=off focus=on \
+     rectangle=640x360+1280+720
+bspc rule -a "*:Toolkit:Picture-in-Picture" \
+     state=floating sticky=on follow=off focus=on \
+     rectangle=640x360+1280+720
 
 #auto start
 polybar &
