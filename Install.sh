@@ -60,12 +60,25 @@ for pkg in "${REQUIRED_PACKAGES[@]}"; do
     install_package "$pkg"
 done
 
+# 
+
+for folder in icon fonts themes; do
+    SRC_PATH="$DOTFILES_DIR/$folder"
+    DEST_PATH="/usr/share/$folder"
+    if [ -d "$SRC_PATH" ]; then
+        echo "Moving $folder to $DEST_PATH"
+        sudo mv "$SRC_PATH" "$DEST_PATH"
+    else
+        echo "Folder $SRC_PATH not found, skipping..."
+    fi
+done
+
 # Danh sách config cần di chuyển
 CONFIGS=("alacritty" "picom" "rofi" "dunst" "polybar" "nvim" "eww" "ranger" "feh" "tmux")
 
 echo "[4] Moving config folders to ~/.config ..."
 for name in "${CONFIGS[@]}"; do
-    SRC="$DOTFILES_DIR/config/$name"
+    SRC="$DOTFILES_DIR/$name"
     DEST="$CONFIG_DIR/$name"
     
     if [ -e "$DEST" ] || [ -L "$DEST" ]; then
