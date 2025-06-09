@@ -1,0 +1,16 @@
+[general]
+base_currency = usd 
+display = price
+
+[bitcoin]
+icon = 󰠓
+
+[ethereum]
+icon = 
+
+[optimism]
+icon = 
+
+[arbitrum]
+icon = 󰣇
+
