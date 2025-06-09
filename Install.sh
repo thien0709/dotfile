@@ -30,7 +30,10 @@ if ! command -v yay &> /dev/null; then
     cd ..
 fi
 
-REQUIRED_PACKAGES=("alacritty" "picom" "rofi" "dunst" "polybar" "nvim" "eww" "ranger" "feh" "tmux")
+
+
+
+REQUIRED_PACKAGES=("alacritty" "picom" "rofi" "dunst" "polybar" "nvim" "eww" "ranger" "feh" "tmux" "ttf-daddytime-mono-nerd" "ttf-firacode-nerd" "ttf-jetbrains-mono-nerd" "ttf-nerd-fonts-symbols" "ttf-nerd-fonts-symbols-mono" "ttf-sourcecodepro-nerd" "ttf-space-mono-nerd")
 
 # Hàm kiểm tra package đã được cài chưa
 is_installed() {
