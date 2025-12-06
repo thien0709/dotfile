@@ -2,6 +2,8 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+autorandr --change
+
 bspc monitor -d I II III IV V
 
 bspc config border_width         2.5
@@ -22,12 +24,14 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a Brave-browser title="Picture in picture" \
+    state=floating sticky=on follow=off focus=off \
+    rectangle=320x180+1600+900
 bspc rule -a mpv \
-     state=floating sticky=on follow=off focus=on \
-     rectangle=640x360+1280+720
-bspc rule -a "*:Toolkit:Picture-in-Picture" \
-     state=floating sticky=on follow=off focus=on \
-     rectangle=640x360+1280+720
+    state=floating sticky=on follow=off focus=off \
+    rectangle=320x180+1600+900
+bspc rule -a Emulator state=floating center=on focus=on
+
 
 #auto start
 polybar &
@@ -35,3 +39,4 @@ dunst &
 picom &
 fcitx5 &
 feh --bg-fill --randomize ~/Downloads/wallpaper/* &  --bg-fill --randomize ~/Downloads/wallpaper/* & 
+
