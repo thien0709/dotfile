@@ -1,31 +1,19 @@
 return {
-	"ellisonleao/gruvbox.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		require("gruvbox").setup({
-  			terminal_colors = true, -- add neovim terminal colors
-  			undercurl = true,
-  			underline = true,
-  			bold = true,
-  			italic = {
-   				strings = true,
- 				emphasis = true,
-    				comments = true,
-    				operators = false,
-    				folds = true,
-  			},
-  			strikethrough = true,
- 			invert_selection = false,
-  			invert_signs = false,
-  			invert_tabline = false,
-  			inverse = true, -- invert background for search, diffs, statuslines and errors
-  			contrast = "", -- can be "hard", "soft" or empty string
-  			palette_overrides = {},
-  			overrides = {},
-  			dim_inactive = false,
-  			transparent_mode = true,
-			})
-		vim.cmd("colorscheme gruvbox")
-	end,
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.gruvbox_material_transparent_background = 1 -- 1: Trong suốt, 0: Đục
+      vim.g.gruvbox_material_background = "hard"        -- "hard", "medium", "soft"
+      vim.cmd.colorscheme("gruvbox-material")
+    end,
+  },
+
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox-material",
+    },
+  },
 }

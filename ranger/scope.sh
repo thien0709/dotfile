@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-use_ueberzugpp=true
-
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'
 
