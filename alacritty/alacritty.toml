@@ -1,10 +1,10 @@
 [window]
-opacity = 0.7
+opacity = 0.8
 padding = {x =15 , y =15}
 
 [font]
-normal = {family = "JetBrains Mono Nerd Font", style = "Light"}
-size = 10
+normal = {family = "Geist Mono Nerd Font"}
+size = 8
 
 [colors.primary] 
 background = '#1f2125'
