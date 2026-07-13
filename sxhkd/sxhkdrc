@@ -16,7 +16,7 @@ super + w
 
 # File Manager (Thunar) - CHANGE THIS if you use PCManFM/Dolphin
 super + e
-	ranger
+	alacritty -e ranger
 
 # Reload sxhkd configuration
 super + Escape
