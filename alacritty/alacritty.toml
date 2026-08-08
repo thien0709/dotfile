@@ -1,0 +1,10 @@
+[window]
+opacity = 0.8
+padding = {x =15 , y =15}
+
+[font]
+normal = {family = "Geist Mono Nerd Font"}
+size = 8
+
+[colors.primary] 
+background = '#1f2125'

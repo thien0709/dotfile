@@ -1,0 +1,9 @@
+* {
+    background:     #1d2021;  /* nền chính */
+    background-alt: #3c3836;  /* nền phụ */
+    foreground:     #ebdbb2;  /* chữ chính */
+    selected:       #d79921;  /* vàng đất nổi bật */
+    active:         #b8bb26;  /* xanh lá dễ nhìn */
+    urgent:         #cc241d;  /* đỏ nổi khẩn cấp */
+}
+
