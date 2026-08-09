@@ -14,7 +14,6 @@ BRANCH="niri"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES="$SCRIPT_DIR"
-BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
 # ============================================================
 # Colors
@@ -106,7 +105,7 @@ install_yay() {
     answer="${answer:-Y}"
 
     if [[ ! "$answer" =~ ^[Yy]$ ]]; then
-        error "yay is required for Nerd Fonts."
+        error "yay is required for AUR packages."
         exit 1
     fi
 
@@ -179,7 +178,7 @@ PACMAN_PACKAGES=(
     htop
     fastfetch
     unzip
-    p7zip
+    7zip
 
     # -------------------------
     # Audio
@@ -227,110 +226,6 @@ sudo pacman -S --needed --noconfirm "${PACMAN_PACKAGES[@]}"
 success "Official packages installed."
 
 # ============================================================
-# Nerd Fonts
-# ============================================================
-
-install_yay
-
-echo
-echo "============================================================"
-echo "                 Nerd Font Installation"
-echo "============================================================"
-echo
-
-echo "Choose the Nerd Font you want to install:"
-echo
-
-NERD_FONTS=(
-    "ttf-jetbrains-mono-nerd"
-    "ttf-fira-code"
-    "ttf-hack-nerd"
-    "ttf-iosevka-nerd"
-    "ttf-meslo-nerd"
-    "ttf-ubuntu-mono-nerd"
-    "ttf-cascadia-code-nerd"
-)
-
-NERD_FONT_NAMES=(
-    "JetBrains Mono Nerd Font"
-    "Fira Code Nerd Font"
-    "Hack Nerd Font"
-    "Iosevka Nerd Font"
-    "Meslo Nerd Font"
-    "Ubuntu Mono Nerd Font"
-    "Cascadia Code Nerd Font"
-)
-
-for i in "${!NERD_FONTS[@]}"; do
-    printf "  %d) %s\n" "$((i + 1))" "${NERD_FONT_NAMES[$i]}"
-done
-
-echo "  0) Skip"
-echo
-
-while true; do
-    read -rp "Enter your choice: " font_choice
-
-    if [[ "$font_choice" == "0" ]]; then
-        info "Skipping Nerd Font installation."
-        break
-    fi
-
-    if [[ "$font_choice" =~ ^[1-7]$ ]]; then
-        selected_font="${NERD_FONTS[$((font_choice - 1))]}"
-        selected_name="${NERD_FONT_NAMES[$((font_choice - 1))]}"
-
-        info "Installing $selected_name..."
-
-        yay -S --needed --noconfirm "$selected_font"
-
-        success "$selected_name installed."
-        break
-    fi
-
-    warn "Invalid choice. Please enter 0-7."
-done
-
-# ============================================================
-# Backup existing configuration
-# ============================================================
-
-info "Creating configuration backup..."
-
-mkdir -p "$BACKUP_DIR"
-
-CONFIGS=(
-    niri
-    waybar
-    swaync
-    rofi
-    alacritty
-    fastfetch
-    ranger
-    nvim
-)
-
-for config in "${CONFIGS[@]}"; do
-    if [[ -e "$HOME/.config/$config" ]]; then
-        cp -a "$HOME/.config/$config" "$BACKUP_DIR/"
-        info "Backed up: ~/.config/$config"
-    fi
-done
-
-for file in \
-    "$HOME/.zshrc" \
-    "$HOME/.bashrc" \
-    "$HOME/.profile"
-do
-    if [[ -e "$file" ]]; then
-        cp -a "$file" "$BACKUP_DIR/"
-    fi
-done
-
-success "Backup created:"
-echo "  $BACKUP_DIR"
-
-# ============================================================
 # Create ~/.config
 # ============================================================
 
@@ -351,8 +246,8 @@ copy_config() {
 
     info "Installing ~/.config/$name"
 
-    mkdir -p "$target"
-    cp -a "$source/." "$target/"
+    rm -rf "$target"
+    cp -a "$source" "$target"
 
     success "$name"
 }
@@ -385,8 +280,6 @@ copy_file() {
 }
 
 copy_file ".zshrc"
-copy_file ".bashrc"
-copy_file ".profile"
 
 # ============================================================
 # Make scripts executable
@@ -433,30 +326,6 @@ if command -v zsh >/dev/null 2>&1; then
     fi
 fi
 
-# ============================================================
-# Font cache
-# ============================================================
-
-if command -v fc-cache >/dev/null 2>&1; then
-    info "Updating font cache..."
-    fc-cache -f >/dev/null 2>&1 || true
-fi
-
-# ============================================================
-# Neovim
-# ============================================================
-
-if command -v nvim >/dev/null 2>&1 &&
-   [[ -d "$HOME/.config/nvim" ]]; then
-
-    info "Installing Neovim plugins..."
-
-    nvim --headless \
-        "+Lazy! sync" \
-        "+qa" \
-        2>/dev/null \
-        || warn "Neovim plugin installation failed."
-fi
 
 # ============================================================
 # Final message
@@ -474,10 +343,6 @@ echo
 
 echo -e "${CYAN}Branch:${NC}"
 echo "  $BRANCH"
-echo
-
-echo -e "${CYAN}Backup:${NC}"
-echo "  $BACKUP_DIR"
 echo
 
 echo -e "${CYAN}Installed configs:${NC}"
