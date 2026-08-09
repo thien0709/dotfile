@@ -14,44 +14,40 @@
     ],
 
     "modules-center": [
-        "clock"
+        "niri/window"
     ],
 
     "modules-right": [
+        "tray",
         "pulseaudio",
         "network",
         "battery",
-        "tray"
+        "clock"
     ],
 
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "active": "󰮯",    // Pacman
-            "default": "󰊠",   // Ghost
+            "active": "󰮯",    
+            "default": "󰊠",   
             "urgent": "󰞅"
         },
         "on-click": "activate"
     },
 
-    "clock": {
-        "format": "󰥔  {:%H:%M}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-            "mode": "month",
-            "on-scroll": 1,
-            "format": {
-                "months": "<span color='#fe8019'><b>{}</b></span>",
-                "days": "<span color='#ebdbb2'><b>{}</b></span>",
-                "weekdays": "<span color='#83a598'><b>{}</b></span>",
-                "today": "<span color='#fb4934'><b><u>{}</u></b></span>"
-            }
-        }
+    "modules-center": [
+        "niri/window"
+    ],
+
+    "niri/window": {
+        "format": "{}",
+        "max-length": 40,
+        "separate-outputs": true
     },
 
     "pulseaudio": {
         "format": "{icon}  {volume}%",
-        "format-muted": "󰖁  Muted",
+        "format-muted": "󰖁 Muted",
         "format-icons": [
             "󰕿",
             "󰖀",
@@ -91,7 +87,11 @@
     },
 
     "tray": {
-        "icon-size": 18,
+        "icon-size": 16,
         "spacing": 10
+    },
+
+    "clock": {
+        "format": "󰥔  {:%H:%M}"
     }
 }

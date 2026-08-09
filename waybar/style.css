@@ -1,7 +1,7 @@
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 500;
     border: none;
     border-radius: 0;
     min-height: 0;
@@ -12,7 +12,7 @@ window#waybar {
     color: #ebdbb2; /* Gruvbox Foreground */
 }
 
-/* Khối nền chính cho các module */
+/* Khối nền chính cho các module (ĐÃ BỎ #window RA KHỎI ĐÂY) */
 #workspaces,
 #clock,
 #pulseaudio,
@@ -24,7 +24,7 @@ window#waybar {
     border-radius: 18px;
     padding: 2px 16px;
     margin: 4px 0;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: none; 
 }
 
 /* Workspaces: Concept Pacman & Ghost */
@@ -89,6 +89,34 @@ window#waybar {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+/* 1. Xóa sạch màu nền và viền của cái "hộp chứa" bên ngoài */
+#window,
+.niri-window {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 2. Đổ màu, viền và padding trực tiếp vào phần CHỮ (label) bên trong */
+#window label,
+.niri-window label {
+    background: #282828; 
+    border: 2px solid #3c3836; 
+    border-radius: 18px;
+    padding: 2px 16px;
+    margin: 4px 0;
+}
+
+/* 3. Khi Waybar nhận diện trống (.empty), ép tàng hình cái chữ luôn */
+#window.empty label,
+.niri-window.empty label {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 @keyframes blink {
