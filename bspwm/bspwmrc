@@ -2,8 +2,6 @@
 
 pgrep -x sxhkd >/dev/null || sxhkd &
 
-autorandr --change
-
 bspc monitor -d I II III IV V
 
 bspc config border_width 2.5
@@ -19,24 +17,20 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 bspc config focus_follows_pointer true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a Brave-browser title="Picture in picture" \
-  state=floating sticky=on follow=off focus=off \
-  rectangle=320x180+1600+900
-bspc rule -a mpv \
-  state=floating sticky=on follow=off focus=off \
-  rectangle=320x180+1600+900
+bspc rule -a '*:*:Picture in picture' \
+  state=floating \
+  sticky=on \
+  follow=off \
+  focus=off \
+  rectangle=320x180+3020+880
+
 bspc rule -a Emulator state=floating center=on focus=on
-bspc rule -a PenTablet state=floating center=on border=off
 
 #auto start
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 polybar &
 dunst &
 picom &
 fcitx5 &
-feh --bg-fill --randomize ~/Downloads/wallpaper/* &
---bg-fill --randomize ~/Downloads/wallpaper/* &
+feh --bg-fill --randomize ~/Downloads/wallpapers/* &
+otd-daemon &
