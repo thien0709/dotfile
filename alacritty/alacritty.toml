@@ -3,8 +3,8 @@ opacity = 0.8
 padding = {x =15 , y =15}
 
 [font]
-normal = {family = "Geist Mono Nerd Font"}
-size = 8
+normal = {family = "JetBrains Mono Nerd Font"}
+size = 11
 
 [colors.primary] 
 background = '#1f2125'
